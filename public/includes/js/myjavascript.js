@@ -837,7 +837,11 @@ function create_booking(formID,url) {
         },
         success: function(result){
             document.getElementById("create_btn").disabled = true;
+            swal({title: "Congrats!", text: "Your Appointment has been submitted successfully", icon:"success"})
+            .then(function(){
             window.location.reload();
+            }
+        );
         },
         error: function(err){
             $(".preload").fadeOut(1000)

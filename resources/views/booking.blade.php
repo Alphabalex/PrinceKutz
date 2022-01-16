@@ -249,7 +249,7 @@
             <script src="{{ asset('includes/js/argon.js') }}"></script>
             <script src="{{ asset('includes/js/jquery.scrollbar.min.js') }}"></script>
             <script src="{{ asset('includes/js/jquery-scrollLock.min.js') }}"></script>
-            <script src="{{ asset('includes/js/sweetalert.all.js') }}"></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
             <script src="{{ asset('includes/js/jquery.timepicker.js') }}"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
@@ -263,7 +263,6 @@
             <script src="scripts/plugins/jquery.numscroller-1.0.js"></script>
             <script src="scripts/plugins/jquery.countdown/jquery.plugin.min.js"></script>
             <script src="scripts/plugins/jquery.countdown/jquery.countdown.min.js"></script>
-
             <script src="scripts/main.js"></script>
             @stack('js')
     </body>

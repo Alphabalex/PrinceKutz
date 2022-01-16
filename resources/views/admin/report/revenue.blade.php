@@ -19,7 +19,7 @@
                 <div class="row rtl-date-filter-row">
                     <div class="form-group col-3">
                         <input type="text" id="filter_date" value="{{$pass}}" name="filter_date" class="form-control" placeholder="{{__('-- Select Date --')}}">
-                        
+
                         @if($errors->any())
                             <h4 class="text-center text-red mt-2">{{$errors->first()}}</h4>
                         @endif
@@ -50,7 +50,7 @@
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$booking->booking_id}}</td>
-                                <td>{{$booking->user->name}}</td>
+                                <td>{{$booking->name}}</td>
                                 <td>{{$booking->salon->name}}</td>
                                 <td>{{$booking->date}} {{$booking->start_time}}</td>
                                 @php
@@ -59,7 +59,7 @@
                                 <td>{{$setting->currency_symbol}}{{$booking->payment}}</td>
                             </tr>
                         @endforeach
-                        
+
                     </tbody>
                     <tfoot>
                         <tr class="total">

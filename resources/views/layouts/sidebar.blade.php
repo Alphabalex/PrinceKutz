@@ -127,9 +127,9 @@
 
                     <div class="collapse  {{ request()->is('admin/report*')  ? 'show' : ''}}" id="navbar-examples1">
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link {{ request()->is('admin/report/user*')  ? 'active_text' : ''}}" href="{{url('admin/report/user')}}">{{__('User Report')}}</a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->is('admin/report/revenue*')  ? 'active_text' : ''}}" href="{{url('admin/report/revenue')}}">{{__('Revenue Report')}}</a>
                             </li>
