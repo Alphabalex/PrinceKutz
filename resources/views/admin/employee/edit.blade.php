@@ -232,7 +232,7 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{$salon->tuesday['close'] == NULL ? 'Day Off':old('tueclose',Carbon\Carbon::parse($emp->tuesday['close']))->format('h:i A')}}"
+                                                                <input type="text" value="{{$salon->tuesday['close'] == NULL ? 'Day Off':old('tueclose',Carbon\Carbon::parse($emp->tuesday['close'])->format('h:i A'))}}"
                                                                     onclick="salonTimeTueClose('tue','{{ Carbon\Carbon::parse($salon->tuesday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($salon->tuesday['close'])->format('h:i A')}}')"
                                                                     class="form-control w-75 day-section-tueclose-emp" name="tueclose" id="close"
                                                                     placeholder="{{__('Closing Time')}}" {{$salon->tuesday['open'] == NULL && $salon->tuesday['close'] == NULL ? 'disabled':''}}

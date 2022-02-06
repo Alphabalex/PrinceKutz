@@ -38,7 +38,7 @@ class NotificationController extends Controller
     
     public function send()
     {
-        $users = User::where('role', '=', 3)
+        $users = User::where('role', '=', 1)
         ->orderBy('id','DESC')
         ->get();
         return view('admin.notification.send', compact('users'));

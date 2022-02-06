@@ -826,7 +826,7 @@ function create_booking(formID,url) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         type:"POST",
-        url:base_url+'/'+url,
+        url:'booking/store',
         data:formData,
         cache:false,
         contentType: false,

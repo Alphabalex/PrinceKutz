@@ -58,7 +58,7 @@ class LoginController extends Controller
         }
         if(Auth::check())
         {
-            Auth::logout();
+            return redirect('/admin/dashboard');
         }
         return view('admin.login.login');
     }
@@ -133,7 +133,6 @@ class LoginController extends Controller
             {
                 try{
                     Mail::to($user->email)->send(new ForgetPassword($content,$detail));
-                    Mail::to("pranali.thirstydevs@gmail.com")->send(new ForgetPassword($content,$detail));
                 }
                 catch(\Throwable $th){
                 }

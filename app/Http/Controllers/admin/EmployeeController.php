@@ -133,7 +133,7 @@ class EmployeeController extends Controller
         $arr = array();
         foreach($appointment as $item)
         {
-            array_push($arr,$item->user_id);
+            array_push($arr,$item->name);
         }
         $count = array_count_values($arr);
         $client = array_keys($count);
@@ -147,7 +147,7 @@ class EmployeeController extends Controller
         $request->validate([
             'name' => 'bail|required',
             'position' => 'bail|required',
-            'email' => 'bail|required|email|unique:employee',
+            'email' => 'bail|required|email',
             'services' => 'bail|required',
             'phone' => 'bail|required|numeric',
         ]);

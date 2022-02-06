@@ -17,13 +17,20 @@ Auth::routes();
 
 Route::get('/', 'HomeController@homepage')->name('landing');
 Route::get('/booking', 'HomeController@booking')->name('booking');
+
 Route::post('/booking/paymentcount', 'HomeController@paymentcount');
 Route::post('/booking/timeslot', 'HomeController@timeslot');
 Route::post('/booking/selectemployee', 'HomeController@selectemployee');
-Route::post('/booking/store', 'HomeController@store');
+
+Route::post('/booking/store', 'HomeController@store')->name('booking.store');
+Route::get('/sendMail', 'HomeController@testMail');
+
 Route::get('/login', function () {
     return redirect('admin/login');
 })->name('login');
+Route::get('/admin', function () {
+    return redirect('admin/login');
+})->name('admin');
 
 Route::get('/clear-cache', function() {
     Artisan::call('cache:clear');

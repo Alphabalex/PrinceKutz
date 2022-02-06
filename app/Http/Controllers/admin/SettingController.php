@@ -258,7 +258,7 @@ class SettingController extends Controller
     public function admin_show()
     {
         $user = User::find(Auth::user()->id);
-        $payment = Booking::where([['payment_status',1],['booking_status','!=','Cancel']])->sum('payment');
+        $payment = Booking::where([['payment_status',1],['booking_status','!=','Cancel']])->sum('price');
         $symbol = AdminSetting::find(1)->currency_symbol;
         $services = Service::count();
         $users = User::where('role',3)->count();

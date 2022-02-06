@@ -4,24 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\BookingMail;
+use App\Mail\NotifyAdmin;
 use App\Salon;
 use App\Booking;
 use App\Coupon;
 use App\Service;
 use App\Banner;
 use App\Gallery;
-use App\User;
 use App\Employee;
 use DateTime;
 use Carbon\Carbon;
 use App\AdminSetting;
-use OneSignal;
-use App\Notification;
-use App\Template;
-use App\Mail\BookingStatus;
-use App\Mail\PaymentStatus;
-use App\Mail\CreateAppointment;
-use App\Mail\AppCreateAppointment;
 use Auth;
 
 class HomeController extends Controller
@@ -33,15 +27,6 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        // return view('home');
-        if(Auth::check())
-        {
-            Auth::logout();
-        }
-        return redirect('admin/login');
-    }
     public function homepage(){
             $app = AdminSetting::first();
             $salon = Salon::where('owner_id', '1')->first();
@@ -56,10 +41,8 @@ class HomeController extends Controller
         $sliders= Banner::all();
         $salon = Salon::where('owner_id', '1')->first();
         $symbol = AdminSetting::find(1)->currency_symbol;
-        //$users = User::where([['status',1],['role',3]])->get();
         $services = Service::where([['salon_id',$salon->salon_id],['status',1]])->get();
         $emps = Employee::where([['status',1],['salon_id',$salon->salon_id]])->get();
-
         return view('booking',compact('app','sliders','symbol','services','emps','salon'));
     }
 
@@ -177,21 +160,18 @@ class HomeController extends Controller
             'name' => 'bail|required',
             'email' => 'bail|required|email',
             'phone' => 'bail|required',
-            'address' => 'bail|required',
             'service_id' => 'bail|required',
             'date' => 'bail|required',
             'start_time' => 'bail|required',
-            'price' => 'bail|required|numeric',
             'emp_id' => 'bail|required',
         ]);
 
         $salon = Salon::where('owner_id', '1')->first();
         $booking = new Booking();
-
         $services =  str_replace('"', '',json_encode($request->service_id));
         $booking->service_id = $services;
         $duration = Service::whereIn('service_id', $request->service_id)->sum('time');
-
+        $booked_services = Service::select('name')->whereIn('service_id', $request->service_id)->get();
         $start_time = new Carbon($request['date'].' '.$request['start_time']);
         $booking->end_time = $start_time->addMinutes($duration)->format('h:i A');
         $booking->salon_id = $salon->salon_id;
@@ -206,57 +186,46 @@ class HomeController extends Controller
         $booking->phone = $request->phone;
         $booking->address = $request->address;
         $booking->booking_id = $request->booking_id;
-
         $booking->save();
-
-        $create_appointment = Template::where('title','Create Appointment')->first();
-
-        $not = new Notification();
-        $not->booking_id = $booking->id;
-        //$not->user_id = $booking->user_id;
-        $not->user = $booking->name;
-        $not->title = $create_appointment->subject;
-
-        $detail['UserName'] = $booking->name;
-        $detail['Date'] = $booking->date;
-        $detail['Time'] = $booking->start_time;
-        $detail['BookingId'] = $booking->booking_id;
-        $detail['SalonName'] = $booking->salon->name;
-        $detail['AdminName'] = AdminSetting::first()->app_name;
-
-        $data = ["{{UserName}}", "{{Date}}","{{Time}}","{{BookingId}}","{{SalonName}}"];
-        $message = str_replace($data, $detail, $create_appointment->msg_content);
-        $not->msg = $message;
-        $not->save();
-
-        $mail_enable = AdminSetting::first()->mail;
-        $notification_enable = AdminSetting::first()->notification;
-
-        if($mail_enable == 1)
-        {
-            try{
-                Mail::to($booking->email)->send(new CreateAppointment($create_appointment->mail_content,$detail));
-            }
-            catch (\Throwable $th) {}
-        }
-        if($notification_enable == 1 && $booking->user->device_token != null)
-        {
-            try{
-                OneSignal::sendNotificationToUser(
-                    $message,
-                    $booking->user->device_token,
-                    $url = null,
-                    $data = null,
-                    $buttons = null,
-                    $schedule = null,
-                    $create_appointment->subject
-                );
-            }
-            catch (\Throwable $th) {}
-        }
+        
+        $date=date_create($booking->date);
+        $booking_date=date_format($date,"l, d F Y");
+        $details['client'] = $booking->name;
+        $details['date'] = $booking_date;
+        $details['start'] = $booking->start_time;
+        $details['end'] = $booking->end_time;
+        $details['booking_id'] = $booking->booking_id;
+        $details['salon'] = $booking->salon->name;
+        $details['address'] = $booking->salon->address;
+        $details['email']=$booking->email;
+        $details['phone'] = $booking->phone;
+        $details['duration'] = $duration;
+        $details['services'] = $booked_services;
+        $this->sendMail($details);
         return response()->json(['msg' => 'Booking successfully', 'data' => $booking, 'success' => true], 200);
-
-
     }
-
+    
+    public function sendMail($data)
+    {
+        Mail::to($data['email'])->send(new BookingMail($data));
+        foreach (['prince@princekutzstudio.com', 'yamkelli@princekutzstudio.com','yvonne@princekutzstudio.com','bookings@princekutzstudio.com'] as $recipient) 
+        {
+            Mail::to($recipient)->send(new NotifyAdmin($data));
+        }
+        
+    }
+    public function testMail()
+    {
+        $details['client'] = 'Balogun Abdulquddus';
+        $details['date'] = '2021-11-30';
+        $details['start'] = '10:00am';
+        $details['end'] = '11:00am';
+        $details['booking_id'] = '#6577243893867';
+        $details['salon'] = 'Test salon';
+        $details['address'] = '16 Aminu Ajibode Avenue';
+        Mail::to('babusunnah@gmail.com')->send(new BookingMail($details));
+        dd('mail sent');
+        
+    }
+    
 }

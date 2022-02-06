@@ -29,7 +29,7 @@ class BookingController extends Controller
         $salon = Salon::where('owner_id', Auth()->user()->id)->first();
         $bookings = Booking::where('salon_id', $salon->salon_id)
         ->orderBy('id','DESC')
-        ->paginate(8);
+        ->paginate(20);
         $symbol = AdminSetting::find(1)->currency_symbol;
         $users = User::where([['status',1],['role',3]])->get();
         $services = Service::where([['salon_id',$salon->salon_id],['status',1]])->get();

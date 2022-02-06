@@ -37,8 +37,8 @@
                         </div>
                         {{-- Address --}}
                         <div class="form-group">
-                            <label class="form-control-label" for="address">{{__('Address')}}</label>
-                            <textarea name="address" id="address" cols="30" rows="10" class="form-control" placeholder="address"></textarea>
+                            <label class="form-control-label" for="address"></label>
+                            <input name="address" type="hidden" id="address" cols="30" rows="10" class="form-control" value"None" placeholder="address">
                             <div class="invalid-div"><span class="address"></span></div>
                         </div>
                         {{-- Services --}}
@@ -67,8 +67,8 @@
                         </div>
                         {{-- service price --}}
                         <div class="form-group">
-                            <label class="form-control-label" for="price">{{__('Price')}}</label>
-                            <input type="text" name="price" id="price" class="form-control" placeholder="{{__('Price')}}" readonly>
+                            <label class="form-control-label" for="price"></label>
+                            <input type="hidden" name="price" id="price" class="form-control" placeholder="{{__('Price')}}" readonly>
                             <div class="invalid-div"><span class="price"></span></div>
                         </div>
 

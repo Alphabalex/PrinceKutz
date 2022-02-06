@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -80,7 +80,7 @@
             </div>
           </div>
           <div class="voffset20"></div>
-          <a href="/booking" class="btn btn-invert">Book Us Now!</a>
+          <a href="/booking" class="btn btn-invert">Book Now!</a>
         </div>
 
       </div>
@@ -96,7 +96,7 @@
             <h1 class="title">PRINCE KUTZ Hair Studio</h1>
             <p class="subtitle colored">All our passionate barbers are professionally trained to execute their craft at their best to help you feel comfortable on the inside & out. We provide perfect male grooming service for your birthdays, weddings, interviews, musical video shoots and all beautiful events.</p>
             <ul class="list-horizontal-links">
-              <li><a href="/booking">Book Us Now</a></li>
+              <li><a href="/booking">Book Now</a></li>
             </ul>
             <div class="voffset90"></div>
           </div>
@@ -176,11 +176,11 @@
         <div class="row">
           <div class="col-md-6 col-md-offset-3">
             <div class="voffset20"></div>
-            <h1 class="title colored invert">We are working 24/7</h1>
+            <h1 class="title colored invert">opening hours</h1>
             <div class="voffset10"></div>
-            <p class="subtitle colored invert">opening hours</p>
             <div class="separator colored invert"></div>
-            <p class="subtitle colored invert">Mon - Sat 10am - 7pm; Sundays 12pm - 6pm; Mon to Sun - Bookings Only</p>
+            <p class="subtitle colored invert">Mon - Sat 10am - 7pm <br> Sundays 12pm - 6pm </p>
+            <p class="subtitle colored invert">Mon to Sun - Bookings Only</p>
             <div class="voffset20"></div>
           </div>
         </div>
@@ -245,7 +245,7 @@
               </li>
               <li class="fadeInUp horizontal-border">
                 <p class="number">
-                  <span class="numscroller" data-min="1" data-max="500" data-delay="2" data-increment="1">500</span>
+                  <span class="numscroller" data-min="1" data-max="8500" data-delay="2" data-increment="10">8500</span>
                 </p>
                 <p class="title-counter">Satisfied clients</p>
               </li>
@@ -409,15 +409,14 @@
       </div>
     </footer>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
+    {{-- <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
       function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
       e=o.createElement(i);r=o.getElementsByTagName(i)[0];
       e.src='https://www.google-analytics.com/analytics.js';
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
       ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script>
-
+    </script> --}}
     <script src="scripts/plugins/jquery.min.js"></script>
     <script src="scripts/plugins/flickity.pkgd.min.js"></script>
     <script src="scripts/plugins/twitterFetcher_min.js"></script>

@@ -53,14 +53,10 @@
                                         <td>{{$booking->start_time}} To {{$booking->end_time}}</td>
                                         <td>{{$symbol}}{{$booking->price}}</td>
                                         <td class="text-center">
-                                            @if ($booking->payment_status == 0)
-                                                <span class="badge badge-pill badge-warning">{{__('Unpaid')}}</span>
+                                            @if ($booking->payment_status == 1)
+                                                <span class="badge badge-pill badge-success">{{__('Paid')}}</span>
                                             @else
-                                                @if ($booking->payment_type == "LOCAL" || $booking->payment_type == "Local")
-                                                    <span class="badge badge-pill badge-success">{{__('Paid')}}</span>
-                                                @else
-                                                    <span class="badge badge-pill badge-success">Stripe</span>
-                                                @endif
+                                                  <span class="badge badge-pill badge-warning">{{__('Unpaid')}}</span>
                                             @endif
                                         </td>
                                         <td>

@@ -113,7 +113,7 @@
                 <form id="create_appointment_form" method="post" enctype="multipart/form-data" action="{{url('/booking/store')}}"">
                     @csrf
                     <?php
-                        $id = rand(100000,9999999);
+                        $id = rand(10000,9999999999999);
                     ?>
                     {{-- Booking ID --}}
                     <div class="form-group">
@@ -140,8 +140,8 @@
                     </div>
                     {{-- Address --}}
                     <div class="form-group">
-                        <label class="form-control-label" for="address">{{__('Address')}}</label>
-                        <textarea name="address" id="address" cols="30" rows="10" class="form-control" placeholder="address"></textarea>
+                        <label class="form-control-label" for="address"></label>
+                        <input name="address" type="hidden" id="address" cols="30" rows="10" class="form-control" value="None" placeholder="address">
                         <div class="invalid-div"><span class="address"></span></div>
                     </div>
                     {{-- Services --}}
@@ -170,16 +170,16 @@
                     </div>
                     {{-- service price --}}
                     <div class="form-group">
-                        <label class="form-control-label" for="price">{{__('Price')}}</label>
-                        <input type="text" name="price" id="price" class="form-control" placeholder="{{__('Price')}}" readonly>
+                        <label class="form-control-label" for="price"></label>
+                        <input type="hidden" name="price" id="price" class="form-control" placeholder="" value="50" readonly>
                         <div class="invalid-div"><span class="price"></span></div>
                     </div>
 
                     {{-- staffs --}}
                     <div class="form-group">
-                        <label class="form-control-label">{{__('Employee')}}</label>
+                        <label class="form-control-label">{{__('Staff')}}</label>
                         <select class="form-control select2 emp_id" name="emp_id" id="emp_id">
-                            <option disabled selected> {{__('-- Select Employee --')}} </option>
+                            <option disabled selected> {{__('-- Select Staff --')}} </option>
                         </select>
                         <div class="invalid-div"><span class="emp_id"></span></div>
                     </div>
@@ -244,26 +244,25 @@
             <div class="voffset40"></div>
         </div>
         </footer>
-            <script src="{{ asset('includes/js/jquery.min.js') }}"></script>
-            <script src="{{ asset('includes/js/bootstrap.bundle.min.js') }}"></script>
-            <script src="{{ asset('includes/js/argon.js') }}"></script>
-            <script src="{{ asset('includes/js/jquery.scrollbar.min.js') }}"></script>
-            <script src="{{ asset('includes/js/jquery-scrollLock.min.js') }}"></script>
-            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-            <script src="{{ asset('includes/js/jquery.timepicker.js') }}"></script>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-            <script src="{{ asset('includes/js/myjavascript.js') }}"></script>
-            <script src="scripts/plugins/jquery.superslides.min.js"></script>
-            <script src="scripts/plugins/owl.carousel.min.js"></script>
-            <script src="scripts/plugins/jquery.inview.min.js"></script>
-            <script src="scripts/plugins/jquery.numscroller-1.0.js"></script>
-            <script src="scripts/plugins/jquery.countdown/jquery.plugin.min.js"></script>
-            <script src="scripts/plugins/jquery.countdown/jquery.countdown.min.js"></script>
-            <script src="scripts/main.js"></script>
-            @stack('js')
+        <script src="{{ asset('includes/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('includes/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('includes/js/argon.js') }}"></script>
+        <script src="{{ asset('includes/js/jquery.scrollbar.min.js') }}"></script>
+        <script src="{{ asset('includes/js/jquery-scrollLock.min.js') }}"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="{{ asset('includes/js/jquery.timepicker.js') }}"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="scripts/plugins/jquery.superslides.min.js"></script>
+        <script src="scripts/plugins/owl.carousel.min.js"></script>
+        <script src="scripts/plugins/jquery.inview.min.js"></script>
+        <script src="scripts/plugins/jquery.numscroller-1.0.js"></script>
+        <script src="scripts/plugins/jquery.countdown/jquery.plugin.min.js"></script>
+        <script src="scripts/plugins/jquery.countdown/jquery.countdown.min.js"></script>
+        <script src="{{ asset('includes/js/booking.js') }}"></script>
+        @stack('js')
     </body>
 </html>

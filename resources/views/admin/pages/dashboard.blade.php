@@ -188,12 +188,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="table-responsive">
+             <div class="table-responsive">
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">{{__('#')}}</th>
-                                <th scope="col">{{__('Image')}}</th>
+                                 <th scope="col">{{__('Image')}}</th>
                                 <th scope="col">{{__('Name')}}</th>
                                 <th scope="col">{{__('Category')}}</th>
                             </tr>
@@ -203,9 +203,9 @@
                                 @foreach ($top_services as $service)
                                     <tr>
                                         <th>{{$loop->iteration}}</th>
-                                        <td>
-                                            <img src="{{asset('storage/images/services/'.$service->image)}}" class="icon rounded-circle">
-                                        </td>
+                                            <td>
+                                                <img src="{{asset('storage/images/services/'.$service->image)}}" class="icon rounded-circle">
+                                            </td>
                                         <td>{{$service->name}}</td>
                                         <td>{{$service->category->name}}</td>
                                     </tr>

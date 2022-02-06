@@ -54,9 +54,9 @@
                                 <td>{{$booking->salon->name}}</td>
                                 <td>{{$booking->date}} {{$booking->start_time}}</td>
                                 @php
-                                    $tot = $tot + $booking->payment;
+                                    $tot = $tot + $booking->price;
                                 @endphp
-                                <td>{{$setting->currency_symbol}}{{$booking->payment}}</td>
+                                <td>{{$setting->currency_symbol}}{{$booking->price}}</td>
                             </tr>
                         @endforeach
 

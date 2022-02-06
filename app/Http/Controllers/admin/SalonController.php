@@ -96,12 +96,7 @@ class SalonController extends Controller
         $salon->name = $request->name;
         $salon->desc = $request->desc;
         $salon->gender = $request->gender;
-
         $salon->address = $request->address;
-        $salon->zipcode = $request->zipcode;
-        $salon->city = ucfirst($request->city);
-        $salon->state = ucfirst($request->state);
-        $salon->country = ucfirst($request->country);
         $salon->website = $request->website;
         $salon->phone = $request->phone;
         $salon->email = $request->email;
@@ -231,10 +226,6 @@ class SalonController extends Controller
         $salon->desc = $request->desc;
 
         $salon->address = $request->address;
-        $salon->zipcode = $request->zipcode;
-        $salon->city = ucfirst($request->city);
-        $salon->state = ucfirst($request->state);
-        $salon->country = ucfirst($request->country);
         $salon->website = $request->website;
         $salon->phone = $request->phone;
         $salon->email = $request->email;

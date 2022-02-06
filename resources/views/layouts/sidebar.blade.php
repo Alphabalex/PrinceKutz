@@ -168,6 +168,12 @@
                     <span class="nav-link-text">{{__('Settings')}}</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('/clear-cache')  ? 'active' : ''}}" href="{{url('/clear-cache')}}">
+                    <i class="fa fa-refresh text-green"></i>
+                    <span class="nav-link-text">{{__('Clear Cache')}}</span>
+                    </a>
+                </li>
 
             </ul>
         </div>
